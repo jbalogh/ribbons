@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS Ribbon</title>
+    <style type="text/css">
+    @font-face {
+      font-family: Collegiate;
+      src: url("Collegiate.ttf");
+    }
+    body {
+      background-color: #111;
+      color: #CCC;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    #ribbon {
+      background-color: #EEE;
+      background: -webkit-gradient(radial, 50% -70, 0, 50% 0, 200, from(#DDD), to(#FFF));
+      color: #111;
+
+      font-family: Collegiate;
+      letter-spacing: -.1px;
+      text-decoration: none;
+      text-shadow: 0 0 .05em;
+
+      padding: 0.25em 3em;
+      border: 1px dotted #BBB;
+
+      position: absolute;
+      right: -2.5em;
+      top: 2.5em;
+    
+      -moz-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg); 
+      -moz-box-shadow: 0 0 10px #999;
+      -webkit-box-shadow: 0 0 10px #999;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Reproducing the GitHub ribbon in CSS</h1>
+    <p>From the bureau of "I know it doesn't work everywhere but I don't care."</p>
+    <a href="#" id="ribbon">
+      Fork me on GitHub
+    </a>
+  </body>
+</html>

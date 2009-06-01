@@ -12,35 +12,59 @@
       color: #CCC;
       font-family: Helvetica, Arial, sans-serif;
     }
-    #ribbon {
-      background-color: #EEE;
-      background: -webkit-gradient(radial, 50% -70, 0, 50% 0, 200, from(#DDD), to(#FFF));
-      color: #111;
-
+    .ribbon {
       font-family: Collegiate;
       letter-spacing: -.1px;
       text-decoration: none;
-      text-shadow: 0 0 .05em;
-
-      padding: 0.25em 3em;
-      border: 1px dotted #BBB;
-
+      padding: 0.26em 0;
       position: absolute;
-      right: -2.5em;
       top: 2.5em;
-    
+
+      /* Defaults friendly for white pages. */
+      -moz-box-shadow: 0 0 13px #888;
+      -webkit-box-shadow: 0 0 13px #888;
+      color: #FFF;
+    }
+
+    .ribbon span {
+      padding: 0.1em 3em;
+    }
+
+    .right.ribbon {
       -moz-transform: rotate(45deg);
-      -webkit-transform: rotate(45deg); 
-      -moz-box-shadow: 0 0 10px #999;
-      -webkit-box-shadow: 0 0 10px #999;
+      -webkit-transform: rotate(45deg);
+      right: -2.5em;
+    }
+
+    .left.ribbon {
+      -moz-transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+      left: -2.5em;
+    }
+
+    .white.ribbon {
+      color: #111;
+      background-color: #FAFAFA;
+      background: -webkit-gradient(linear, left bottom, left top, from(#f3f3f3), to(#fff));
+      -moz-box-shadow: 0 0 13px #999;
+      -webkit-box-shadow: 0 0 13px #999;
+    }
+
+    .orange.ribbon {
+      background-color: #E57504;
+      background: -webkit-gradient(linear, left bottom, left top, from(#dc7202), to(#ee7906));
+    }
+
+    .orange.ribbon span {
+      border: 1px solid #ebaa65;
     }
     </style>
   </head>
   <body>
     <h1>Reproducing the GitHub ribbon in CSS</h1>
     <p>From the bureau of "I know it doesn't work everywhere but I don't care."</p>
-    <a href="#" id="ribbon">
-      Fork me on GitHub
+    <a href="#" class="left orange ribbon">
+      <span>Fork me on GitHub</span>
     </a>
   </body>
 </html>

@@ -166,6 +166,14 @@
         the browser, like image editors and Flash, and moving them into the web
         space.  It's a good time to be a web developer.
       </p>
+      <p>
+        Note: this is broken is Webkit because the rotation isn't being applied
+        according to the
+        <a href="http://webkit.org/blog/130/css-transforms/">spec</a>.  The
+        rotation is pivoting on the top left corner instead of the center, as
+        seen by checking/unchecking the <code>-webkit-transform</code> property
+        in the Inspector.  I should file a bug.
+      </p>
     </div>
   </body>
 </html>

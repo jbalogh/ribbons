@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>CSS Ribbon</title>
+    <link rel="stylesheet" type="text/css" href="boilerplate.css">
     <link rel="stylesheet" type="text/css" href="ribbon.css">
     <style type="text/css">
     body {
@@ -17,29 +18,28 @@
       font-size: 95%;
       color: #333;
     }
-    .prose, .tiles {
+    .prose, .tiled {
       float: left;
     }
-    .tiles li {
-      border: 1px solid #ddd;
-      height: 9em;
-      width: 13em;
-      overflow: hidden;
+    .tiled .ribbon-holder {
+      position: relative;
     }
-    .tiles li .right.ribbon {
+    .tiled li {
+      border: 1px solid #ddd;
+      width: 13em;
+      list-style-type: none;
+    }
+    .tiled .right .ribbon {
       /* Pull a little extra to get it working inline. */
       right: -3.5em;
     }
-    .tiles .ribbon {
-      position: relative;
-    }
-    .tiles li.dark {
+    .tiled li.dark {
       background-color: #111;
     }
     </style>
   </head>
   <body>
-    <h1>Reproducing the GitHub ribbon in CSS</h1>
+    <h1>Reproducing the GitHub Ribbon in CSS</h1>
     <h4>From the bureau of "I know it doesn't work everywhere but I don't care."</h4>
       <div class="right ribbon-holder">
         <a href="http://github.com/jbalogh" class="orange ribbon">
@@ -96,9 +96,11 @@
       <pre><code>
       &lt;link rel="stylesheet" type="text/css" href="ribbon.css"&gt;
       [...]
-      &lt;a href="#" class="left red ribbon"&gt;
-        &lt;span class="text"&gt;Fork me on GitHub&lt;/span&gt;
-      &lt;/a&gt;
+      &lt;div class="left ribbon-holder"&gt;
+        &lt;a href="#" class="red ribbon"&gt;
+          &lt;span class="text"&gt;Fork me on GitHub&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
       </code></pre>
       <p>
         The first trick I went for was
@@ -154,9 +156,15 @@
       <p>
         Of course, this isn't perfect.  It's certainly easier to embed an image
         that works in any browser,  but I think there's some compelling benefits
-        to this method.  For a web developer like me, it's much easier to edit
-        some CSS to customize the text and colors than it is to find someone who
-        knows Photoshop.  And the CSS version scales to any zoom level.
+        to this method.  For a web developer like me, it's much easier to
+        customize the text and colors in CSS than it is to find someone who
+        knows Photoshop.
+      </p>
+      <p>
+        I think that's the powerful idea in the next generation of browsers.
+        They're taking a lot of the issues where we had to rely on tools outside
+        the browser, like image editors and Flash, and moving them into the web
+        space.  It's a good time to be a web developer.
       </p>
     </div>
   </body>

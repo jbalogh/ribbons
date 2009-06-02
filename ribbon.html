@@ -5,20 +5,142 @@
     <link rel="stylesheet" type="text/css" href="ribbon.css">
     <style type="text/css">
     body {
-      background-color: #111;
-      color: #CCC;
+      font-size: 100%;
+      color: #444;
       font-family: Helvetica, Arial, sans-serif;
+    }
+    h1 { font-size: 2.5em; }
+    h4 { font-size: 1.1em; }
+    .prose {
+      margin-left: 3em;
+      width: 35em;
+      font-size: 95%;
+      color: #333;
+    }
+    .prose, .tiles {
+      float: left;
+    }
+    .tiles li {
+      border: 1px solid #ddd;
+      height: 9em;
+      width: 13em;
+      overflow: hidden;
+    }
+    .tiles li .right.ribbon {
+      /* Pull a little extra to get it working inline. */
+      right: -3.5em;
+    }
+    .tiles .ribbon {
+      position: relative;
+    }
+    .tiles li.dark {
+      background-color: #111;
     }
     </style>
   </head>
   <body>
     <h1>Reproducing the GitHub ribbon in CSS</h1>
-    <p>From the bureau of "I know it doesn't work everywhere but I don't care."</p>
-    <a href="#" class="left orange ribbon">
+    <h4>From the bureau of "I know it doesn't work everywhere but I don't care."</h4>
+    <a href="http://github.com/jbalogh" class="right orange ribbon">
       <span class="text">Fork me on GitHub</span>
     </a>
-    <a href="#" class="right white ribbon">
-      <span class="text">Fork me on GitHub</span>
-    </a>
+    <ul class="tiles">
+      <li>
+        <a href="#" class="right darkblue ribbon">
+          <span class="text">Fork me on GitHub</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="left red ribbon">
+          <span class="text">Fork me on GitHub</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="right green ribbon">
+          <span class="text">Fork me on GitHub</span>
+        </a>
+      </li>
+      <li class="dark">
+        <a href="#" class="left white ribbon">
+          <span class="text">Fork me on GitHub</span>
+        </a>
+      </li>
+    </ul>
+    <div class="prose">
+      <p>
+        I've been seeing these "Fork me on GitHub"
+        <a href="http://github.com/blog/273-github-ribbons">ribbons</a>
+        popping up seemingly everywhere, which made me wonder how hard it would
+        be to recreate the ribbons without images, using only CSS.  Making the
+        ribbons turned out to be a fun introduction to some new CSS toys in
+        upcoming browsers.
+      </p>
+      <p>The code to make a ribbon:</p>
+      <pre><code>
+      &lt;link rel="stylesheet" type="text/css" href="ribbon.css"&gt;
+      [...]
+      &lt;a href="#" class="left red ribbon"&gt;
+        &lt;span class="text"&gt;Fork me on GitHub&lt;/span&gt;
+      &lt;/a&gt;
+      </code></pre>
+      <p>
+        The first trick I went for was
+        <a href="https://developer.mozilla.org/En/CSS/-moz-transform"><code>-moz-transform</code></a>
+        (<code>-webkit-transform</code>).  A simple
+        <code>-moz-transform: rotate(45deg)</code> and I have a ribbon ready for
+        the right corner.
+      </p>
+      <p>
+        Once I tweaked the colors enough to look passable, the glaring
+        inconsistency was the font.  The GitHub images don't use one of the 9 or
+        so web-safe fonts, which almost made me stop trying.  But looking at the
+        <a href="http://github.com/blog/273-github-ribbons">blog post</a> again,
+        they mention that the font is
+        <a href="http://www.fontriver.com/font/collegiate/">Collegiate</a>,
+        which is freely available on
+        <a href="http://www.fontriver.com/">fontriver.com</a>.  Using the new
+        <a href="https://developer.mozilla.org/en/CSS/@font-face"><code>@font-face</code></a>,
+        I can make the ribbon font match the image exactly:
+      </p>
+      <pre><code>
+      @font-face {
+        font-family: Collegiate;
+        src: url("Collegiate.ttf");
+      }
+      .ribbon {
+        font-family: Collegiate, sans-serif;
+      }
+      </code></pre>
+      <p>
+        I wasn't excited about <code>@font-face</code> until I found a real
+        usage like this.
+      </p>
+      <p>
+        The blur surrounding the ribbon is achieved through
+        <a href="https://developer.mozilla.org/en/CSS/-moz-box-shadow"><code>-moz-box-shadow</code></a>.
+        <code>-moz-box-shadow: 0 0 13px #888;</code> creates a dark shadow with
+        no vertical or horizontal offset and a blur radius of <code>13px</code>.
+      <p>
+      <p>
+        The last goody is
+        <a href="http://webkit.org/blog/175/introducing-css-gradients/">-webkit-gradient</a>,
+        which is unfortunately only available in Webkit at this point.  I hope
+        it finds its way into Firefox soon.  The ribbon images have a small
+        background gradient which I recreate for the orange ribbon with:
+      </p>
+      <pre><code>
+      .orange.ribbon {
+        background: -webkit-gradient(linear, left bottom, left top,
+                                     from(#dc7202), to(#ee7906));
+      }
+      </code></pre>
+      <p>
+        Of course, this isn't perfect.  It's certainly easier to embed an image
+        that works in any browser,  but I think there's some compelling benefits
+        to this method.  For a web developer like me, it's much easier to edit
+        some CSS to customize the text and colors than it is to find someone who
+        knows Photoshop.  And the CSS version scales to any zoom level.
+      </p>
+    </div>
   </body>
 </html>

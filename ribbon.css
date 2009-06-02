@@ -3,14 +3,33 @@
   src: url("Collegiate.ttf");
 }
 
+.ribbon-holder {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  height: 10em;
+}
+
+.right.ribbon-holder {
+  right: 0;
+}
+
+.left.ribbon-holder {
+  left: 0;
+}
+
+.ribbon,
+.ribbon:hover {
+  text-decoration: none;
+}
+
 .ribbon {
   font-family: Collegiate, sans-serif;
   letter-spacing: -.1px;
-  text-decoration: none;
   opacity: 0.95;
 
   padding: 0.25em 0;
-  position: absolute;
+  position: relative;
   top: 2.5em;
 
   /* Defaults friendly for white pages. */
@@ -23,13 +42,13 @@
   padding: 0.1em 3em;
 }
 
-.right.ribbon {
+.right .ribbon {
   -moz-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   right: -2.5em;
 }
 
-.left.ribbon {
+.left .ribbon {
   -moz-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   left: -2.5em;

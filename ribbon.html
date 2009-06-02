@@ -3,20 +3,24 @@
   <head>
     <title>CSS Ribbon</title>
     <style type="text/css">
-    @font-face {
-      font-family: Collegiate;
-      src: url("Collegiate.ttf");
-    }
     body {
       background-color: #111;
       color: #CCC;
       font-family: Helvetica, Arial, sans-serif;
     }
-    .ribbon {
+
+    @font-face {
       font-family: Collegiate;
+      src: url("Collegiate.ttf");
+    }
+
+    .ribbon {
+      font-family: Collegiate, sans-serif;
       letter-spacing: -.1px;
       text-decoration: none;
-      padding: 0.26em 0;
+      opacity: 0.95;
+
+      padding: 0.25em 0;
       position: absolute;
       top: 2.5em;
 
@@ -26,7 +30,7 @@
       color: #FFF;
     }
 
-    .ribbon span {
+    .ribbon .text {
       padding: 0.1em 3em;
     }
 
@@ -55,7 +59,7 @@
       background: -webkit-gradient(linear, left bottom, left top, from(#dc7202), to(#ee7906));
     }
 
-    .orange.ribbon span {
+    .orange.ribbon .text {
       border: 1px solid #ebaa65;
     }
     </style>
@@ -64,7 +68,10 @@
     <h1>Reproducing the GitHub ribbon in CSS</h1>
     <p>From the bureau of "I know it doesn't work everywhere but I don't care."</p>
     <a href="#" class="left orange ribbon">
-      <span>Fork me on GitHub</span>
+      <span class="text">Fork me on GitHub</span>
+    </a>
+    <a href="#" class="right white ribbon">
+      <span class="text">Fork me on GitHub</span>
     </a>
   </body>
 </html>
